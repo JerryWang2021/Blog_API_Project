@@ -37,9 +37,8 @@ let posts = [
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//Write your code here//
 
-//CHALLENGE 1: GET All posts
+//GET All posts
 app.get('/posts', (req, res) => {
   if (posts.length !== 0) {
     res.json(posts);
@@ -48,7 +47,7 @@ app.get('/posts', (req, res) => {
   }
 });
 
-//CHALLENGE 2: GET a specific post by id
+//GET a specific post by id
 app.get('/posts/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const postIndex = posts.findIndex(post => post.id === id);
@@ -61,7 +60,7 @@ app.get('/posts/:id', (req, res) => {
   }
 });
 
-//CHALLENGE 3: POST a new post
+//POST a new post
 app.post('/posts', (req, res) => {
   const newPostId = posts.length + 1;
   const newPost = { id: newPostId, ...req.body, date: new Date() };
@@ -69,7 +68,7 @@ app.post('/posts', (req, res) => {
   res.status(201).json(newPost);
 });
 
-//CHALLENGE 4: PATCH a post when you just want to update one parameter
+//PATCH a post when you just want to update one parameter
 app.patch('/posts/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const partialData = req.body;
@@ -84,7 +83,7 @@ app.patch('/posts/:id', (req, res) => {
 
 });
 
-//CHALLENGE 5: DELETE a specific post by providing the post id.
+//DELETE a specific post by providing the post id.
 app.delete("/posts/:id", (req, res) => {
   const index = posts.findIndex((p) => p.id === parseInt(req.params.id));
   if (index === -1) return res.status(404).json({ message: "Post not found" });
